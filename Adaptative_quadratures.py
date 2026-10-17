@@ -1,12 +1,9 @@
 import numpy as np
-from quadratures_simples import trobaPesos
-from quadratures_simples import trobaPunts
-from quadratures_compostes import SimpsonCompost
-from quadratures_compostes import trapeziCompost
-from quadratures_compostes import calcula
+from Composite_quadratures import SimpsonCompost
+from Composite_quadratures import trapeziCompost
 
 import matplotlib.pyplot as plt
-import scipy
+import scipy.integrate
 
 def f(x):
     return np.sin(np.exp(2*x))
@@ -51,14 +48,14 @@ while(not AproxT):
         AproxT = True
     else:
         compteT += 1
-    
+
 while(not AproxS):
     s = SimpsonCompost(f, a, b, compteS)
     if(abs(s - scipy.integrate.quad(f,a,b)[0]) < 1e-3):
         AproxS = True
     else:
-        compteS += 1 
-    
+        compteS += 1
+
 print("Es necessiten", compteT, "subintervals per aconseguir 6 xifres significatives amb el mètode del Trapezi")
 print("Es necessiten", compteS, "subintervals per aconseguir 6 xifres significatives amb el mètode de Simpson")
 print("L'aproximació pel mètode del trapezi amb ", compteT, "subintervals és ", t)
