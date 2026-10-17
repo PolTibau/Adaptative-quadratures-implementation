@@ -1,8 +1,8 @@
 import numpy as np
-from quadratures_simples import trobaPesos
-from quadratures_simples import trobaPunts
+from Simple_quadratures import trobaPesos
+from Simple_quadratures import trobaPunts
 from quadratures_Gauss import quadraturaGauss
- 
+
 
 def calcula(W,X,f):
     integral = 0
@@ -34,8 +34,13 @@ def SimpsonCompost(f,a,b,m):
 
 def GaussCompost(f,a,b,m,nIP):
     h = (b-a)/m
-    W = np.zeros(nIP,m)
+    #Tindrem un vector de vectors de pesos per cada seccio W
+    W = np.zeros((m,nIP))
+    X = np.zeros((m,nIP))
+    #Punts i pesos de Gauss a l'interval de referencia [-1,1]
+    z, w = quadraturaGauss(nIP)
     for i in range(m):
-        W[i] = quadraturaGauss(nIP)
-        X[i] = trobaPunts(1, a + i*h, a + (i+1)*h)
-
+        #Els passem a cada subinterval [a + i*h, a + (i+1)*h]
+        X[i] = a + i*h + (z + 1)*h/2
+        W[i] = w*h/2
+    return calcula(W,X,f)

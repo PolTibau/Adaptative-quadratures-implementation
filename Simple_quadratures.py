@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy
 import math
-from quadratures_Gauss import quadraturaGauss 
+from quadratures_Gauss import quadraturaGauss
 
 def trobaPunts(n,a,b):
     X = np.zeros(n+1)
@@ -20,7 +20,7 @@ def trobaPesos(n, a, b, X):
     S = np.zeros(n+1)
     for i in range(n+1):
         S[i] = (b**(i+1)-a**(i+1))/(i+1)
-    
+
     #Resolem el sistema per trobar els pesos
     W = np.linalg.solve(B,S)
     return W
@@ -31,16 +31,16 @@ def calcula1(w,X):
     for i in range(X.size):
         integral += w[i]*(np.exp(-(X[i]**2)))
     return integral
-  
+
 
 def calcula2(w,X):
     integral = 0
     for i in range(X.size):
         integral += w[i]*(1/(1+16*X[i]**2))
-    return integral  
-    
-            
-    
+    return integral
+
+
+
 
 #Comencem treballant amb les quadratures de Newton-Cotes:
 #considerem la integral I1 = sqrt(pi)*erf(1)
@@ -52,7 +52,7 @@ b = 1
 
 Error1 = np.zeros(n.size)
 Aprox1 = np.zeros(n.size)
-for k in range(n.size): 
+for k in range(n.size):
     X = trobaPunts(n[k],a,b)
     w = trobaPesos(n[k],a,b,X)
     Aprox1[k] = calcula1(w,X)
