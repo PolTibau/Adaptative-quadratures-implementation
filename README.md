@@ -1,28 +1,27 @@
 # Adaptative quadratures implementation
 
-Pràctica de Càlcul Numèric sobre integració numèrica: quadratures simples de
-Newton-Cotes, quadratures compostes (trapezi, Simpson i Gauss) i una
-quadratura adaptativa de Simpson, aplicades a la integral de
-`f(x) = sin(exp(2x))` a l'interval `[0, 2]`.
+Numerical Analysis assignment on numerical integration: simple Newton-Cotes quadratures,
+composite quadratures (trapezoidal, Simpson and Gauss) and an adaptive Simpson quadrature,
+applied to the integral of `f(x) = sin(exp(2x))` on `[0, 2]`.
 
-L'informe de la pràctica és a [`Quadratures_adaptatives_PolTibau.pdf`](Quadratures_adaptatives_PolTibau.pdf).
+The assignment report (in Catalan) is [`Quadratures_adaptatives_PolTibau.pdf`](Quadratures_adaptatives_PolTibau.pdf).
 
-## Estructura
+## Structure
 
-| Fitxer | Contingut |
+| File | Contents |
 | --- | --- |
-| `Simple_quadratures.py` | `trobaPunts` i `trobaPesos`: nodes equiespaiats i pesos de Newton-Cotes resolent el sistema de moments. Conté, comentats, els experiments amb `exp(-x^2)` i `1/(1+16x^2)` |
-| `Composite_quadratures.py` | `trapeziCompost`, `SimpsonCompost` i `GaussCompost`, més la funció `calcula` que aplica pesos i nodes |
-| `Adaptative_quadratures.py` | Exercicis 1, 2, 4 i 5: errors del trapezi i Simpson compostos, nombre de subintervals necessaris i `SimpsonAdaptativa` |
-| `quadratures_Gauss.py` | `quadraturaGauss(nIP)`: nodes i pesos de Gauss-Legendre de 1 a 15 punts a `[-1, 1]`. Material proporcionat a l'assignatura |
+| `Simple_quadratures.py` | `trobaPunts` and `trobaPesos`: equispaced nodes and Newton-Cotes weights obtained by solving the moment system. Also contains, commented out, the experiments with `exp(-x^2)` and `1/(1+16x^2)` |
+| `Composite_quadratures.py` | `trapeziCompost`, `SimpsonCompost` and `GaussCompost`, plus the `calcula` function that applies weights and nodes |
+| `Adaptative_quadratures.py` | Exercises 1, 2, 4 and 5: errors of the composite trapezoidal and Simpson rules, number of subintervals needed, and `SimpsonAdaptativa` |
+| `quadratures_Gauss.py` | `quadraturaGauss(nIP)`: Gauss-Legendre nodes and weights from 1 to 15 points on `[-1, 1]`. Provided by the course |
 
-## Execució
+## Running
 
 ```
 pip install -r requirements.txt
 python Adaptative_quadratures.py
 ```
 
-L'script imprimeix les aproximacions i errors i mostra les gràfiques de la
-pràctica. Pot trigar una mica, perquè l'exercici 2 incrementa el nombre de
-subintervals un a un fins a assolir la tolerància.
+The script prints the approximations and errors and shows the assignment plots. It can take
+a while, because exercise 2 increases the number of subintervals one by one until the
+tolerance is reached.
